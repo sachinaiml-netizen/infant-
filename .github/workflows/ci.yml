@@ -52,4 +52,6 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Test browser schedule upload and decision-brief download
         run: node tests/test_browser_workflow.cjs
+      - name: Test five-theme opportunity workflows in browser
+        run: node tests/test_opportunity_lab_browser.cjs
       - run: python -m pytest -q
