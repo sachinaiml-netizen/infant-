@@ -192,3 +192,10 @@ Any relevance to Prestige's actual processes remains a hypothesis to validate wi
 - Prestige Group press-release index: https://www.prestigeconstructions.com/kn/news/2026/april
 
 Prepared as a student proof of concept for a technology discussion. No affiliation with, endorsement by, or internal access to Prestige Group is implied.
+
+
+## Five-theme opportunity lab
+
+- **Portfolio demo:** https://project-impact-lab.vercel.app/opportunity-lab (available after the opportunity-lab branch is deployed)
+- **Module scope and limitations:** [docs/OPPORTUNITY_LAB.md](docs/OPPORTUNITY_LAB.md)
+- Includes synthetic concept demos for LaunchIQ, DocumentIQ, VendorIQ and ServiceIQ, plus a ConstructionIQ view that calls the existing CPM API. It is an independent research prototype, not a Prestige system or an assertion of internal gaps.
