@@ -28,7 +28,7 @@ async function main() {
     assert.match(await page.title(), /Real-Estate Operations Intelligence Lab/);
 
     await page.locator('[data-view="launch"]').click();
-    await page.locator("#launchUpload").setInputFiles({name:"launch.csv",mimeType:"text/csv",buffer:Buffer.from("id,name,owner,day,weight,ready,depends_on\nA,Design,Design team,2,50,true,\nB,Readiness,Project controls,4,50,false,A\n")});
+    await page.locator("#launchUpload").setInputFiles({name:"launch.csv",mimeType:"text/csv",buffer:Buffer.from("id,name,owner,day,weight,ready,depends_on\nA,Design,Design team,2,50,false,\nB,Readiness,Project controls,4,50,false,A\n")});
     await page.waitForFunction(() => document.querySelector("#launchImportMsg").textContent.includes("Loaded 2 checklist items"));
     assert.match(await page.locator("#launchList").innerText(), /Depends on A/);
     assert.match(await page.locator("#launchActions").innerText(), /Resolve dependencies/);
