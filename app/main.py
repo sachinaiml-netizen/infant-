@@ -10,14 +10,16 @@ from .schemas import CsvScheduleRequest, ExperimentalRiskResponse, ProjectTeleme
 
 app = FastAPI(
     title="Project Impact Lab",
-    version="2.0.0",
+    version="2.1.0",
     description=(
         "A synthetic-data proof of concept for critical-path-aware scenario analysis "
-        "and explainable construction recovery decisions."
+        "and explainable construction recovery decisions, with a separate opportunity "
+        "exploration hub for five real-estate operations concepts."
     ),
 )
 
 FRONTEND_FILE = Path(__file__).resolve().parent.parent / "static" / "index.html"
+OPPORTUNITY_LAB_FILE = Path(__file__).resolve().parent.parent / "static" / "opportunity-lab.html"
 
 
 @app.get("/")
@@ -25,6 +27,14 @@ def home():
     if not FRONTEND_FILE.exists():
         raise HTTPException(status_code=404, detail="Frontend file is missing.")
     return FileResponse(FRONTEND_FILE)
+
+
+@app.get("/opportunity-lab")
+def opportunity_lab():
+    """Serve the independent, synthetic-data five-theme opportunity concept lab."""
+    if not OPPORTUNITY_LAB_FILE.exists():
+        raise HTTPException(status_code=404, detail="Opportunity lab file is missing.")
+    return FileResponse(OPPORTUNITY_LAB_FILE, media_type="text/html")
 
 
 @app.get("/health")
@@ -52,7 +62,6 @@ def scenario(request: ScenarioRequest):
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
-
 
 
 @app.get("/sample-schedule.csv")
@@ -83,7 +92,6 @@ def analyze_csv_schedule(request: CsvScheduleRequest):
 def risk(project: ProjectTelemetry) -> RiskResponse:
     result = assess_risk(project)
     return RiskResponse(project_id=project.project_id, **result)
-
 
 
 @app.post("/risk-model", response_model=ExperimentalRiskResponse)
